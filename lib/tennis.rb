@@ -1,6 +1,9 @@
+# frozen_string_literal: true
+
 class Tennis
   def initialize
-    @player1score, @player2score = 'love', 'love'
+    @player1score = 'love'
+    @player2score = 'love'
     @deuce = false
   end
 
@@ -17,15 +20,15 @@ class Tennis
     if return_to_deuce?(playerscore)
       @player1score, @player2score = '40'
     elsif a_win?(playerscore)
-      playerscore = 'win'
+      'win'
     elsif @deuce
-      playerscore = 'adv'
+      'adv'
     elsif playerscore == '30'
-      playerscore = '40'
+      '40'
     elsif playerscore == '15'
-      playerscore = '30'
+      '30'
     else
-      playerscore = '15'
+      '15'
     end
   end
 
@@ -38,9 +41,7 @@ class Tennis
   end
 
   def deuce_scenario
-    if @player1score == '40' && @player2score == '40'
-      @deuce = true
-    end
+    return @deuce = true if @player1score == '40' && @player2score == '40'
   end
 
   def there_winner?
@@ -64,10 +65,10 @@ class Tennis
   end
 
   def current_score
-    if is_there_winner
-      is_there_winner
+    if there_winner?
+      there_winner?
     elsif @deuce
-      is_there_advantage
+      there_advantage?
     else
       @player1score + '-' + @player2score
     end
