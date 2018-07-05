@@ -19,15 +19,11 @@ class Tennis
   def score_updater(playerscore)
     if return_to_deuce?(playerscore)
       @player1score, @player2score = '40'
-    elsif a_win?(playerscore)
-      'win'
-    elsif @deuce
-      'adv'
-    elsif playerscore == '30'
-      '40'
-    elsif playerscore == '15'
-      '30'
     else
+      return 'win' if a_win?(playerscore)
+      return 'adv' if @deuce
+      return '40' if playerscore == '30'
+      return '30' if playerscore == '15'
       '15'
     end
   end
