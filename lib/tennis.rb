@@ -2,8 +2,8 @@
 
 class Tennis
   def initialize
-    @player1score = 'love'
-    @player2score = 'love'
+    @player1score = :love
+    @player2score = :love
     @deuce = false
   end
 
@@ -18,32 +18,32 @@ class Tennis
 
   def score_updater(playerscore)
     if return_to_deuce?(playerscore)
-      @player1score, @player2score = '40'
+      @player1score, @player2score = :'40'
     else
-      return 'win' if a_win?(playerscore)
-      return 'adv' if @deuce
-      return '40' if playerscore == '30'
-      return '30' if playerscore == '15'
-      '15'
+      return :win if a_win?(playerscore)
+      return :adv if @deuce
+      return :'40' if playerscore == :'30'
+      return :'30' if playerscore == :'15'
+      :'15'
     end
   end
 
   def a_win?(playerscore)
-    playerscore == 'adv' || (playerscore == '40' && !@deuce)
+    playerscore == :adv || (playerscore == :'40' && !@deuce)
   end
 
   def return_to_deuce?(playerscore)
-    (@player1score == 'adv' || @player2score == 'adv') && playerscore == '40'
+    (@player1score == :adv || @player2score == :adv) && playerscore == :'40'
   end
 
   def deuce_scenario
-    return @deuce = true if @player1score == '40' && @player2score == '40'
+    return @deuce = true if @player1score == :'40' && @player2score == :'40'
   end
 
   def there_winner?
-    if @player1score == 'win'
+    if @player1score == :win
       'Player 1 wins'
-    elsif @player2score == 'win'
+    elsif @player2score == :win
       'Player 2 wins'
     else
       false
@@ -51,9 +51,9 @@ class Tennis
   end
 
   def there_advantage?
-    if @player1score == 'adv'
+    if @player1score == :adv
       'Advantage Player 1'
-    elsif @player2score == 'adv'
+    elsif @player2score == :adv
       'Advantage Player 2'
     else
       'Deuce'
@@ -66,7 +66,7 @@ class Tennis
     elsif @deuce
       there_advantage?
     else
-      @player1score + '-' + @player2score
+      "#{@player1score}-#{@player2score}"
     end
   end
 end
