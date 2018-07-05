@@ -39,7 +39,7 @@ describe Tennis do
       end
     end
 
-    context 'player 1 scores twice in a row' do
+    context 'player 2 scores twice in a row' do
       it 'returns 30-love' do
         2.times { new_game.player_scores(2) }
         expect(new_game.current_score).to eq('love-30')
